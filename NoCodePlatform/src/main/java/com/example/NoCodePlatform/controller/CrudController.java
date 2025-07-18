@@ -16,10 +16,9 @@ public class CrudController {
 
     @Autowired
     private CrudService crudService;
-    
-    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails){
+
+    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) {
         crudService.createCrud(entityDetails);
-        
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
