@@ -15,9 +15,11 @@ import com.example.NoCodePlatform.service.FileCreator.CreateServiceFile;
 public class CrudService {
 
     public void createCrud(List<EntityDetails> entityDetails) {
-        
+        System.out.println(" crud service called..");
         for (EntityDetails entity : entityDetails) {
+
             String entityname = entity.getEntityName();
+            System.out.println(entityname+" == in the for loop");
             List<AttributesDetails> attributesDetails = entity.getAttribute();
 
             // create controller
@@ -27,10 +29,10 @@ public class CrudService {
             CreateRepositoryFile.create(entityname);
 
             // create service layer          
-            CreateServiceFile.create(entityname, attributesDetails);
+            // CreateServiceFile.create(entityname, attributesDetails);
 
             // create entity
-            CreateEntityFile.create(entityname, attributesDetails);
+            // CreateEntityFile.create(entityname, attributesDetails);
 
 
         }

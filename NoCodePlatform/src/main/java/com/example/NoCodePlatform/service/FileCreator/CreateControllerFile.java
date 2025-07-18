@@ -12,21 +12,24 @@ public class CreateControllerFile {
 
 
     public static void create(String entityName){
-
+        System.out.println("CreateControllerFile called..");
         String controllerCode = ControllerGenerator.generate(entityName);
+          System.out.println("code generated.." + controllerCode);
         // save the file in the base project
         String targetDirectory = BASE_PATH + "/controller";
+         System.out.println("target directoery" + targetDirectory);
         String filename = StringHelper.fileNameCompatible(entityName)+"Controller.java";
-
+        System.out.println("filename: "+ filename);
         try {
             // creating directory
             Path directoryPath = Paths.get(targetDirectory);
-            Files.createDirectory(directoryPath);
+            Files.createDirectories(directoryPath);
 
             //creating file
             Path filePath = directoryPath.resolve(filename);
             //writing code
             Files.writeString(filePath, controllerCode);
+            System.out.println("file updated");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,12 +22,12 @@ public class CreateServiceFile {
             // create file obj
             Path directory = Paths.get(targetDirectory);
             //create directory if not present 
-            Files.createDirectory(directory);
+            Files.createDirectories(directory);
             //create file
             Path filePath = directory.resolve(filename);
             //write in a file
             Files.writeString(filePath, serviceCode);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
