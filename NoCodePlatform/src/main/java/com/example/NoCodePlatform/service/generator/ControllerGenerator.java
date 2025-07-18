@@ -36,28 +36,28 @@ public class ControllerGenerator {
  controller.append("    // create "+camelName+"\r\n");
  controller.append("    @PostMapping(\"/create"+camelName+"\")\r\n");
  controller.append("    public ResponseEntity<"+name+"> create"+name+"(@RequestBody "+name+" "+camelName+"){\r\n");
- controller.append("        User savedUser = userService.createUser(user);\r\n");
- controller.append("        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);\r\n");
+ controller.append("        "+name+" saved"+name+" = "+camelName+"Service.create"+name+"("+camelName+");\r\n");
+ controller.append("        return new ResponseEntity<>(saved"+name+", HttpStatus.CREATED);\r\n");
  controller.append("    }\r\n\n");
  
- controller.append("    // get user\r\n");
- controller.append("    @GetMapping(\"/getuser/{id}\")\r\n");
- controller.append("    public ResponseEntity<User> getUser(@PathVariable String id){\r\n");
- controller.append("        User user = userService.getUserbyId(id);\r\n");
- controller.append("        return new ResponseEntity<>(user, HttpStatus.OK);\r\n");
+ controller.append("    // get "+camelName+"\r\n");
+ controller.append("    @GetMapping(\"/get"+camelName+"/{id}\")\r\n");
+ controller.append("    public ResponseEntity<"+name+"> get"+name+"(@PathVariable String id){\r\n");
+ controller.append("        "+name+" "+camelName+" = "+camelName+"Service.get"+name+"byId(id);\r\n");
+ controller.append("        return new ResponseEntity<>("+camelName+", HttpStatus.OK);\r\n");
  controller.append("    }\r\n\n");
 
- controller.append("    // update user\r\n");
- controller.append("    @PutMapping(\"/updateuser\")\r\n");
- controller.append("    public ResponseEntity<User> updateUser(@RequestBody User user){\r\n");
- controller.append("        User updatedUser = userService.updateUser(user);\r\n");
- controller.append("        return new ResponseEntity<>(updatedUser, HttpStatus.OK);\r\n");
+ controller.append("    // update "+camelName+"\r\n");
+ controller.append("    @PutMapping(\"/update"+camelName+"\")\r\n");
+ controller.append("    public ResponseEntity<"+name+"> update"+name+"(@RequestBody "+name+" "+camelName+"){\r\n");
+ controller.append("        "+name+" updated"+name+" = "+camelName+"Service.update"+name+"("+camelName+");\r\n");
+ controller.append("        return new ResponseEntity<>(updated"+name+", HttpStatus.OK);\r\n");
  controller.append("    }\r\n\n");
  
- controller.append("    // delete user\r\n");
- controller.append("    @DeleteMapping(\"/deleteuser/{id}\")\r\n");
- controller.append("    public ResponseEntity<Void> deleteUser(@PathVariable String id){\r\n");
- controller.append("        userService.deleteUserById(id);\r\n");
+ controller.append("    // delete "+camelName+"\r\n");
+ controller.append("    @DeleteMapping(\"/delete"+camelName+"/{id}\")\r\n");
+ controller.append("    public ResponseEntity<Void> delete"+name+"(@PathVariable String id){\r\n");
+ controller.append("        "+camelName+"Service.delete"+name+"ById(id);\r\n");
  controller.append("        return new ResponseEntity<>(HttpStatus.NO_CONTENT);\r\n");
  controller.append("    }\r\n");
 

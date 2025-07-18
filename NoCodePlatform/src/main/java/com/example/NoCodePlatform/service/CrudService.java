@@ -29,10 +29,10 @@ public class CrudService {
             CreateRepositoryFile.create(entityname);
 
             // create service layer          
-            // CreateServiceFile.create(entityname, attributesDetails);
+            CreateServiceFile.create(entityname, attributesDetails);
 
             // create entity
-            // CreateEntityFile.create(entityname, attributesDetails);
+            CreateEntityFile.create(entityname, attributesDetails);
 
 
         }
