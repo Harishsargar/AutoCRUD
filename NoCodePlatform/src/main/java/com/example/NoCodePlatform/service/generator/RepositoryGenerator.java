@@ -7,7 +7,7 @@ public class RepositoryGenerator {
     public static String generate(String entityName) {
         StringBuilder repository = new StringBuilder();
         String name = StringHelper.fileNameCompatible(entityName); // format HarishSargar
-        String camelName = StringHelper.camelCase(entityName); // format harishSargar
+        // String camelName = StringHelper.camelCase(entityName); // format harishSargar
 
         repository.append("package com.example.baseProject.repository;\r\n");
         repository.append("import org.springframework.data.jpa.repository.JpaRepository;\r\n\n");

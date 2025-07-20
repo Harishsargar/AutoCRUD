@@ -7,14 +7,15 @@ import java.util.List;
 
 import com.example.NoCodePlatform.helper.StringHelper;
 import com.example.NoCodePlatform.model.AttributesDetails;
+import com.example.NoCodePlatform.model.RelationDetails;
 import com.example.NoCodePlatform.service.generator.EntityGenerator;
 
 public class CreateEntityFile {
             private static final String BASE_PATH = "C:/Users/Harish/OneDrive/Desktop/self/spring/baseProjectTest/src/main/java/com/example/baseProject";
 
-    public static void create(String entityname, List<AttributesDetails> attributes){
+    public static void create(String entityname, List<AttributesDetails> attributes, List<RelationDetails> relation){
 
-        String entityCode = EntityGenerator.generate(entityname, attributes);
+        String entityCode = EntityGenerator.generate(entityname, attributes, relation);
         String targetDirectory = BASE_PATH+"/entity";
         String fileName = StringHelper.fileNameCompatible(entityname)+".java";
         // save the file in the base project

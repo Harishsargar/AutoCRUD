@@ -37,7 +37,7 @@ public class ServiceGenerator {
         service.append("    }\r\n\n");
 
         service.append("    // get " + camelName + "\r\n");
-        service.append("    public " + name + " get" + name + "byId(String id){\r\n");
+        service.append("    public " + name + " get" + name + "ById(String id){\r\n");
         service.append("        return " + camelName + "Repo.findById(id).orElse(null);\r\n");
         service.append("    }\r\n\n");
 

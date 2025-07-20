@@ -8,5 +8,6 @@ import lombok.Data;
 public class EntityDetails {
     private String entityName;
     private List<AttributesDetails> attribute;
+    private List<RelationDetails> relation;
 }
 

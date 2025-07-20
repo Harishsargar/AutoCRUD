@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.NoCodePlatform.model.AttributesDetails;
 import com.example.NoCodePlatform.model.EntityDetails;
+import com.example.NoCodePlatform.model.RelationDetails;
 import com.example.NoCodePlatform.service.FileCreator.CreateControllerFile;
 import com.example.NoCodePlatform.service.FileCreator.CreateEntityFile;
 import com.example.NoCodePlatform.service.FileCreator.CreateRepositoryFile;
@@ -19,20 +20,25 @@ public class CrudService {
         for (EntityDetails entity : entityDetails) {
 
             String entityname = entity.getEntityName();
-            System.out.println(entityname+" == in the for loop");
+            System.out.println("EntityName: "+entityname);
             List<AttributesDetails> attributesDetails = entity.getAttribute();
+            List<RelationDetails> relation = entity.getRelation();
 
             // create controller
-            CreateControllerFile.create(entityname);
+            // System.out.println("Creating Controller File: "+ entityname);
+            // CreateControllerFile.create(entityname);
 
             // create respository
-            CreateRepositoryFile.create(entityname);
+            // System.out.println("Creating Respository File: "+ entityname);
+            // CreateRepositoryFile.create(entityname);
 
             // create service layer          
-            CreateServiceFile.create(entityname, attributesDetails);
+            // System.out.println("Creating Service File: "+ entityname);
+            // CreateServiceFile.create(entityname, attributesDetails);
 
             // create entity
-            CreateEntityFile.create(entityname, attributesDetails);
+            System.out.println("Creating Entity File: "+ entityname);
+            CreateEntityFile.create(entityname, attributesDetails, relation);
 
 
         }
