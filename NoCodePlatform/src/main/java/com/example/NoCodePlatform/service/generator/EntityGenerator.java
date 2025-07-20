@@ -59,7 +59,7 @@ public class EntityGenerator {
                 }else if(relation.getRelationType().equalsIgnoreCase("manytoone")){
 
                     entity.append("@ManyToOne\r\n@JsonIgnore\r\n");
-                    entity.append("private "+StringHelper.fileNameCompatible(target)+" "+StringHelper.camelCase(target)+";\r\n");
+                    entity.append("private "+StringHelper.fileNameCompatible(target)+" "+StringHelper.camelCase(target)+";\r\n\n");
 
                     // @ManyToOne
                     // @JsonIgnore

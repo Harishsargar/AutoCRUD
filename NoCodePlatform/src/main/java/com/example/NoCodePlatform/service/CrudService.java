@@ -29,8 +29,8 @@ public class CrudService {
             // CreateControllerFile.create(entityname);
 
             // create respository
-            // System.out.println("Creating Respository File: "+ entityname);
-            // CreateRepositoryFile.create(entityname);
+            System.out.println("Creating Respository File: "+ entityname);
+            CreateRepositoryFile.create(entityname, relation);
 
             // create service layer          
             // System.out.println("Creating Service File: "+ entityname);
