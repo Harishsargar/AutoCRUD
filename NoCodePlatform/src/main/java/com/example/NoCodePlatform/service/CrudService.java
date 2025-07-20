@@ -33,8 +33,8 @@ public class CrudService {
             CreateRepositoryFile.create(entityname, relation);
 
             // create service layer          
-            // System.out.println("Creating Service File: "+ entityname);
-            // CreateServiceFile.create(entityname, attributesDetails);
+            System.out.println("Creating Service File: "+ entityname);
+            CreateServiceFile.create(entityname, attributesDetails, relation);
 
             // create entity
             System.out.println("Creating Entity File: "+ entityname);
