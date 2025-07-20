@@ -120,3 +120,27 @@
   align-items: center;
   gap: 5px;
 }
+
+.relation-list{
+  margin: 30px 0;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.474);
+  border-radius: 5px;
+  background-color: #d0fcf291;
+  h4{
+    padding-bottom: 10px;
+  }
+}
+.relation-row{
+  display: flex;
+  margin: 10px 0;
+  gap: 10px;
+  
+
+}
+
+.add-relation-btn{
+  margin-left: 10px;
+  background-color: #4caf50;
+  color: white;
+}

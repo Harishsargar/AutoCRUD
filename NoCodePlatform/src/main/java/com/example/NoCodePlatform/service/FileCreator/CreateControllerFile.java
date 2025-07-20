@@ -16,7 +16,7 @@ public class CreateControllerFile {
     public static void create(String entityName, List<RelationDetails> relationDetails ){
         System.out.println("CreateControllerFile called..");
         String controllerCode = ControllerGenerator.generate(entityName, relationDetails);
-          System.out.println("code generated.." + controllerCode);
+        //   System.out.println("code generated.." + controllerCode);
         // save the file in the base project
         String targetDirectory = BASE_PATH + "/controller";
          System.out.println("target directoery" + targetDirectory);
