@@ -25,8 +25,8 @@ public class CrudService {
             List<RelationDetails> relation = entity.getRelation();
 
             // create controller
-            // System.out.println("Creating Controller File: "+ entityname);
-            // CreateControllerFile.create(entityname);
+            System.out.println("Creating Controller File: "+ entityname);
+            CreateControllerFile.create(entityname, relation);
 
             // create respository
             System.out.println("Creating Respository File: "+ entityname);
