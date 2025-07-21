@@ -1,79 +1,98 @@
-# 🛠️ No-Code Spring Boot CRUD Generator
+#  AutoCRUD : no-code SpringBoot CRUD generator
 
-A full-stack code generation platform that lets you build complete Spring Boot CRUD modules — including Entity, Repository, Service, and Controller — by simply providing input through a REST API or UI. It also supports One-to-Many and Many-to-One entity relationships.
+A backend code generation platform that lets you build complete Spring Boot CRUD modules — including Entity, Repository, Service, and Controller — by simply providing input through a REST API or UI. It now supports **multiple entities**, **entity relationships** (`One-to-Many`, `Many-to-One`), **basic field validation**, and **automatic .zip project downloads**.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- ✅ REST + UI-based input for entity and attributes
-- ✅ Auto-generates:
+-  REST + UI-based input for entity and attributes  
+-  Auto-generates:
   - Entity classes with annotations
   - JPA Repositories
   - Service classes
-  - REST Controllers
-- ✅ Supports relationships:
+  - REST Controllers  
+-  Relationship support:
   - `@OneToMany`, `@ManyToOne`
-- ✅ Dynamic file writing to target project (`baseProjectTest`)
-- ✅ UI available for simple entity input
-- ✅ JSON-based API for automation via Postman
+-  Automatic handling of infinite recursion with `@JsonIgnore`
+-  Support for **basic validations** like `@NotNull`, `@Size` *(configurable via JSON)*
+-  Dynamic file writing to target project (`baseProjectTest`)
+-  Backend generates and auto-zips project files
+-  Frontend auto-downloads the `.zip` file after generation
+-  UI available for simple entity input
+-  JSON-based API for automation via Postman
 
 ---
 
-## 🧱 Tech Stack
+##  Tech Stack
 
 | Layer      | Tech                         |
 |------------|------------------------------|
 | Backend    | Spring Boot, Java 17         |
-| Frontend   | HTML + Bootstrap (simple UI) |
+| Frontend   | React                        |
 | API Client | Postman                      |
 | Build Tool | Maven                        |
 
 ---
 
+##  Download Behavior
+
+Upon entity submission via UI or API:
+- Backend generates the full CRUD module
+- A `.zip` is created with all source files
+- File is automatically downloaded in the frontend
+- If generation fails, an appropriate error is shown
 
 ---
 
-## 🧾 Sample JSON Input (via API)
+##  Sample JSON Input (via API)
 
 ```json
 [
   {
-    "entityName": "School",
-    "attributes": [
-      { "name": "name", "type": "String" }
+    "entityName": "user",
+    "attribute": [
+      { "name": "name", "type": "String", "nullable": false },
+      { "name": "lastname", "type": "String", "nullable": true },
+      { "name": "age", "type": "int", "nullable": true }
     ],
-    "relations": [
+    "relation": [
       {
-        "type": "OneToMany",
-        "targetEntity": "Student",
-        "mappedBy": "school"
+        "relationType": "onetomany",
+        "targetEntity": "task"
       }
     ]
   },
   {
-    "entityName": "Student",
-    "attributes": [
-      { "name": "firstName", "type": "String" },
-      { "name": "lastName", "type": "String" }
+    "entityName": "task",
+    "attribute": [
+      { "name": "task name", "type": "String", "nullable": false },
+      { "name": "taskDescription", "type": "String", "nullable": true },
+      { "name": "taskPriority", "type": "String", "nullable": true }
     ],
-    "relations": [
+    "relation": [
       {
-        "type": "ManyToOne",
-        "targetEntity": "School",
-        "joinColumn": "school_id"
+        "relationType": "manytoone",
+        "targetEntity": "user"
       }
     ]
   }
 ]
 ```
 
-## 🔮 Future Enhancements / Roadmap
 
--  Support for **Many-to-Many** relationships
-- Built-in **.zip download** for generated project
-- UI improvement with **field type dropdowns** and **validations**
-- **Swagger/OpenAPI** documentation for all endpoints
-- Ability to **edit/update generated entities** via UI
-- **Role-based login** support for multi-user platform
+## 🔍 How It Works — *No AI,*  Just Pure Java
 
+Unlike AI-based code generators, **this platform does not use any Large Language Models (LLMs)** like ChatGPT, Codex, or any code-generation AI.  
+Instead, it relies entirely on **traditional Java programming** to:
+
+- Parse JSON input for entities and relationships
+- Dynamically generate Java class files with accurate syntax and annotations
+- Uses **string manipulation and builders** to construct valid Java class definitions (e.g., Entity, Repository, Service, Controller).
+- Automatically adds appropriate annotations such as `@Entity`, `@Id`, `@GeneratedValue`, `@ManyToOne`, `@OneToMany`, and more.
+- Generates CRUD endpoints with proper REST mappings (`@PostMapping`, `@GetMapping`, etc.).
+- Handles entity relationships including **One-to-Many** and **Many-to-One** based on user-defined input.
+- Manage file and folder generation within the backend
+- Package the output into a downloadable `.zip` file
+
+✅ **100% pure Java coded generation logic — No AI or LLMs involved**
