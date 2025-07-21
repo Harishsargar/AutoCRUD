@@ -24,6 +24,13 @@ A backend code generation platform that lets you build complete Spring Boot CRUD
 
 ---
 
+<h2 align="center">AutoCRUD</h2>
+<p align="center">
+    <img src="docs/frontend.png" alt="AutoCrud UI" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+</p>
+
+---
+
 ##  Tech Stack
 
 | Layer      | Tech                         |
@@ -80,7 +87,13 @@ Upon entity submission via UI or API:
 ]
 ```
 
+---
+<h2 align="center">Backend Code Genaration (terminal)</h2>
+<p align="center">
+    <img src="docs/backendTerminal.png" alt="Harish's Demo" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+</p>
 
+---
 ## 🔍 How It Works — *No AI,*  Just Pure Java
 
 Unlike AI-based code generators, **this platform does not use any Large Language Models (LLMs)** like ChatGPT, Codex, or any code-generation AI.  
