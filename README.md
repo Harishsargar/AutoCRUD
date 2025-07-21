@@ -5,6 +5,13 @@ A backend code generation platform that lets you build complete Spring Boot CRUD
 
 ---
 
+<h2 align="center">AutoCRUD</h2>
+<p align="center">
+    <img src="docs/frontend.png" alt="AutoCrud UI" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+</p>
+
+---
+
 ##  Features
 
 -  REST + UI-based input for entity and attributes  
@@ -24,10 +31,11 @@ A backend code generation platform that lets you build complete Spring Boot CRUD
 -  JSON-based API for automation via Postman
 
 ---
-
-<h2 align="center">AutoCRUD</h2>
+<h2 align="center"> Project Demonstration</h2>
 <p align="center">
-    <img src="docs/frontend.png" alt="AutoCrud UI" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+  <a href="https://youtu.be/99snuQPZPJM" target="_blank">
+    <img src="docs/thumbnail.png" alt="Harish's Demo" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+  </a>
 </p>
 
 ---
@@ -50,6 +58,12 @@ Upon entity submission via UI or API:
 - A `.zip` is created with all source files
 - File is automatically downloaded in the frontend
 - If generation fails, an appropriate error is shown
+
+---
+<h2 align="center">Backend Code Genaration (terminal)</h2>
+<p align="center">
+    <img src="docs/backendTerminal.png" alt="Harish's Demo" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
+</p>
 
 ---
 
@@ -88,13 +102,7 @@ Upon entity submission via UI or API:
 ]
 ```
 
----
-<h2 align="center">Backend Code Genaration (terminal)</h2>
-<p align="center">
-    <img src="docs/backendTerminal.png" alt="Harish's Demo" width="600" style="border: 2px solid #ccc; border-radius: 8px;" />
-</p>
 
----
 ## 🔍 How It Works (*No AI,*  Just Pure Java)
 
 Unlike AI-based code generators, **this platform does not use any Large Language Models (LLMs)** like ChatGPT, Codex, or any code-generation AI.  
@@ -110,3 +118,7 @@ Instead, it relies entirely on **traditional Java programming** to:
 - Package the output into a downloadable `.zip` file
 
 ✅ **100% pure Java coded generation logic — No AI or LLMs involved**
+
+---
+
+
