@@ -1,6 +1,7 @@
-#  AutoCRUD : no-code SpringBoot CRUD generator
+#  AutoCRUD : no-code SpringBoot CRUD generator 
+<h3 align="center">No LLM, Just Pure Java</h3>
 
-A backend code generation platform that lets you build complete Spring Boot CRUD modules — including Entity, Repository, Service, and Controller — by simply providing input through a REST API or UI. It now supports **multiple entities**, **entity relationships** (`One-to-Many`, `Many-to-One`), **basic field validation**, and **automatic .zip project downloads**.
+A backend code generation platform that lets you build complete Spring Boot CRUD modules, including Entity, Repository, Service, and Controller by simply providing input through a REST API or UI. It now supports **multiple entities**, **entity relationships** (`One-to-Many`, `Many-to-One`), **basic field validation**, and **automatic .zip project downloads**. Without any LLM models just pure Java Programming
 
 ---
 
@@ -94,7 +95,7 @@ Upon entity submission via UI or API:
 </p>
 
 ---
-## 🔍 How It Works — *No AI,*  Just Pure Java
+## 🔍 How It Works (*No AI,*  Just Pure Java)
 
 Unlike AI-based code generators, **this platform does not use any Large Language Models (LLMs)** like ChatGPT, Codex, or any code-generation AI.  
 Instead, it relies entirely on **traditional Java programming** to:
