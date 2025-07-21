@@ -83,13 +83,26 @@ function Home() {
 
   const handleSubmit = async () => {
     try {
-        console.log(entities);
+      console.log(entities);
       const response = await createCrud(entities);
       console.log("responce: ", response);
-      if (response.status==200) {
-        // const result = await response.json();
-        alert("Backend code generation successful!");
+      if (response.status == 200) {
+        // Create a blob from the response
+        const blob = new Blob([response.data], { type: 'application/zip' });
+
+        // Create a temporary link to trigger download
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'generated_project.zip';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(link.href); // Clean up blob URL
+
+        alert('✅ Project generated and downloaded successfully!');
         console.log("Backend Response:", response.data);
+      } else if (response.status === 404) {
+        alert(' ZIP file not found on the server.');
       } else {
         alert("Failed to generate backend code.");
       }

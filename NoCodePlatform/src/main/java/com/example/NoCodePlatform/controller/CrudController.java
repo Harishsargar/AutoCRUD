@@ -1,10 +1,15 @@
 package com.example.NoCodePlatform.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +37,18 @@ public class CrudController {
             System.out.println(entityDetails2);
         }
         String zipPath = crudService.createCrud(entityDetails);
+        Path path = Paths.get(zipPath);
+        UrlResource resource = new UrlResource(path.toUri());
+        if(!resource.exists()){
+            return new ResponseEntity<>("Project Not Found",HttpStatus.NOT_FOUND);
+        }
 
-        return new ResponseEntity<>("crud generated successfully",HttpStatus.OK);
+
+        return ResponseEntity.ok()
+                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + path.getFileName().toString())
+                             .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                             .body(resource);
+
+        // return new ResponseEntity<>(HttpStatus.OK);
     }
 }
