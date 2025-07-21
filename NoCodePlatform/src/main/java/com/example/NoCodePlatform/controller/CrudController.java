@@ -35,7 +35,7 @@ public class CrudController {
     private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
 
     @PostMapping("/createcrud")
-    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) throws IOException {
+    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) throws IOException, InterruptedException {
         // System.out.println("create crud called...");
         logger.info("Create Crud Called...");
         

@@ -5,6 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -27,7 +31,10 @@ public class CrudService {
     private static final String BASE_PATH = "C:/Users/Harish/OneDrive/Desktop/self/spring/baseProjectTest";
     private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
 
-    public String createCrud(List<EntityDetails> entityDetails) throws IOException {
+    public String createCrud(List<EntityDetails> entityDetails) throws IOException, InterruptedException {
+
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+
         // System.out.println(" crud service called..");
         logger.info(" crud service called..");
         for (EntityDetails entity : entityDetails) {
@@ -37,25 +44,88 @@ public class CrudService {
             List<AttributesDetails> attributesDetails = entity.getAttribute();
             List<RelationDetails> relation = entity.getRelation();
 
+            // ===========sequential_approch=============================================
+
+            // // create controller
+            // System.out.println("Creating Controller File: " + entityname);
+            // CreateControllerFile.create(entityname, relation);
+
+            // // create respository
+            // System.out.println("Creating Respository File: " + entityname);
+            // CreateRepositoryFile.create(entityname, relation);
+
+            // // create service layer
+            // System.out.println("Creating Service File: " + entityname);
+            // CreateServiceFile.create(entityname, attributesDetails, relation);
+
+            // // create entity
+            // System.out.println("Creating Entity File: " + entityname);
+            // CreateEntityFile.create(entityname, attributesDetails, relation);
+
+            // =======multithrading_approch=================================================
+
             // create controller
-            System.out.println("Creating Controller File: " + entityname);
-            CreateControllerFile.create(entityname, relation);
+            // Thread controller = new Thread(() -> {
+            //     System.out.println("1. Creating Controller File: " + entityname);
+            //     CreateControllerFile.create(entityname, relation);
+            // });
+            // controller.start();
 
-            // create respository
-            System.out.println("Creating Respository File: " + entityname);
-            CreateRepositoryFile.create(entityname, relation);
+            // // create service
+            // Thread service = new Thread(() -> {
+            //     System.out.println("2. Creating service File: " + entityname);
+            //     CreateServiceFile.create(entityname, attributesDetails, relation);
+            // });
+            // service.start();
 
-            // create service layer
-            System.out.println("Creating Service File: " + entityname);
-            CreateServiceFile.create(entityname, attributesDetails, relation);
+            // // create repository
+            // Thread repository = new Thread(() -> {
+            //     System.out.println("3. Creating repository File: " + entityname);
+            //     CreateRepositoryFile.create(entityname, relation);
+            // });
+            // repository.start();
 
-            // create entity
-            System.out.println("Creating Entity File: " + entityname);
-            CreateEntityFile.create(entityname, attributesDetails, relation);
+            // // create entity
+            // Thread entityFile = new Thread(() -> {
+            //     System.out.println("4. Creating entity File: " + entityname);
+            //     CreateEntityFile.create(entityname, attributesDetails, relation);
+            // });
+            // entityFile.start();
 
-            
+            // // Wait for all threads to complete
+            // controller.join();
+            // service.join();
+            // repository.join();
+            // entityFile.join();
+
+
+            //======exceutor_service_thread====================================================================================
+
+            executorService.submit(()->{
+                 System.out.println("1. Creating Controller File: " + entityname);
+                CreateControllerFile.create(entityname, relation);
+            });
+
+            executorService.submit(()->{
+                System.out.println("2. Creating Service File: "+entityname);
+                CreateServiceFile.create(entityname, attributesDetails, relation);
+            });
+
+             executorService.submit(()->{
+                System.out.println("3. Creating Repository File: "+entityname);
+                CreateRepositoryFile.create(entityname, relation);
+            });
+
+             executorService.submit(()->{
+                System.out.println("4. Creating Entity File: "+entityname);
+                CreateEntityFile.create(entityname, attributesDetails, relation);
+            });
+
 
         }
+
+        // executorService.shutdown();
+        // executorService.awaitTermination(1, TimeUnit.MINUTES);
         return zipFolder(BASE_PATH);
     }
 
