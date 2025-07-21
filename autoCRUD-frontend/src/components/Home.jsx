@@ -116,7 +116,7 @@ function Home() {
     <div className="home">
       <div className="title">
         <h1>Auto CRUD</h1>
-        <h3>Generates the Backend CRUD operations with just a few clicks</h3>
+        <h3>Generates the Spring Backend CRUD with just a few clicks</h3>
       </div>
 
       <div className="form-section">
@@ -269,7 +269,7 @@ function Home() {
         </button>
 
         <button onClick={handleSubmit} className="button submit-btn">
-          Submit
+          Generate Backend 
         </button>
       </div>
     </div>

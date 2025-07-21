@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.example.NoCodePlatform.controller.CrudController;
 import com.example.NoCodePlatform.model.AttributesDetails;
 import com.example.NoCodePlatform.model.EntityDetails;
 import com.example.NoCodePlatform.model.RelationDetails;
@@ -22,9 +25,11 @@ import com.example.NoCodePlatform.service.FileCreator.CreateServiceFile;
 public class CrudService {
 
     private static final String BASE_PATH = "C:/Users/Harish/OneDrive/Desktop/self/spring/baseProjectTest";
+    private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
 
     public String createCrud(List<EntityDetails> entityDetails) throws IOException {
-        System.out.println(" crud service called..");
+        // System.out.println(" crud service called..");
+        logger.info(" crud service called..");
         for (EntityDetails entity : entityDetails) {
 
             String entityname = entity.getEntityName();

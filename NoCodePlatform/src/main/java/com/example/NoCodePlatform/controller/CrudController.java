@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import com.example.NoCodePlatform.model.EntityDetails;
 import com.example.NoCodePlatform.service.CrudService;
@@ -29,12 +32,16 @@ public class CrudController {
     @Autowired
     private CrudService crudService;
 
+    private static final Logger logger = LoggerFactory.getLogger(CrudController.class);
+
     @PostMapping("/createcrud")
     public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) throws IOException {
-        System.out.println("create crud called...");
+        // System.out.println("create crud called...");
+        logger.info("Create Crud Called...");
         
         for (EntityDetails entityDetails2 : entityDetails) {
-            System.out.println(entityDetails2);
+            // System.out.println(entityDetails2);
+            logger.info("Entity Detail: {}",entityDetails2);
         }
         String zipPath = crudService.createCrud(entityDetails);
         Path path = Paths.get(zipPath);
