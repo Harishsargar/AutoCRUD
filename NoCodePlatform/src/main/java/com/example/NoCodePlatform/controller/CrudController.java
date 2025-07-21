@@ -1,5 +1,6 @@
 package com.example.NoCodePlatform.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,13 @@ public class CrudController {
     private CrudService crudService;
 
     @PostMapping("/createcrud")
-    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) {
+    public ResponseEntity<?> createCrud(@RequestBody List<EntityDetails> entityDetails) throws IOException {
         System.out.println("create crud called...");
         
         for (EntityDetails entityDetails2 : entityDetails) {
             System.out.println(entityDetails2);
         }
-        crudService.createCrud(entityDetails);
+        String zipPath = crudService.createCrud(entityDetails);
 
         return new ResponseEntity<>("crud generated successfully",HttpStatus.OK);
     }

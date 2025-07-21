@@ -1,6 +1,12 @@
 package com.example.NoCodePlatform.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import org.springframework.stereotype.Service;
 
@@ -15,33 +21,61 @@ import com.example.NoCodePlatform.service.FileCreator.CreateServiceFile;
 @Service
 public class CrudService {
 
-    public void createCrud(List<EntityDetails> entityDetails) {
+    private static final String BASE_PATH = "C:/Users/Harish/OneDrive/Desktop/self/spring/baseProjectTest";
+
+    public String createCrud(List<EntityDetails> entityDetails) throws IOException {
         System.out.println(" crud service called..");
         for (EntityDetails entity : entityDetails) {
 
             String entityname = entity.getEntityName();
-            System.out.println("EntityName: "+entityname);
+            System.out.println("EntityName: " + entityname);
             List<AttributesDetails> attributesDetails = entity.getAttribute();
             List<RelationDetails> relation = entity.getRelation();
 
             // create controller
-            System.out.println("Creating Controller File: "+ entityname);
+            System.out.println("Creating Controller File: " + entityname);
             CreateControllerFile.create(entityname, relation);
 
             // create respository
-            System.out.println("Creating Respository File: "+ entityname);
+            System.out.println("Creating Respository File: " + entityname);
             CreateRepositoryFile.create(entityname, relation);
 
-            // create service layer          
-            System.out.println("Creating Service File: "+ entityname);
+            // create service layer
+            System.out.println("Creating Service File: " + entityname);
             CreateServiceFile.create(entityname, attributesDetails, relation);
 
             // create entity
-            System.out.println("Creating Entity File: "+ entityname);
+            System.out.println("Creating Entity File: " + entityname);
             CreateEntityFile.create(entityname, attributesDetails, relation);
 
+            
 
         }
+        return zipFolder(BASE_PATH);
+    }
+
+    public String zipFolder(String sourceDirPath) throws IOException {
+        System.out.println("creating zip...");
+        String zipPath = sourceDirPath + ".zip";
+        Path zipFilePath = Paths.get(zipPath);
+
+        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(zipFilePath))) {
+            Path pp = Paths.get(sourceDirPath);
+            Files.walk(pp)
+                    .filter(path -> !Files.isDirectory(path))
+                    .forEach(path -> {
+                        ZipEntry zipEntry = new ZipEntry(pp.relativize(path).toString());
+                        try {
+                            zs.putNextEntry(zipEntry);
+                            Files.copy(path, zs);
+                            zs.closeEntry();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
+        System.out.println(zipPath);
+        return zipPath; // 👈 This returns something like: C:\Users\Harish\...\baseProjectTest.zip
     }
 
 }
